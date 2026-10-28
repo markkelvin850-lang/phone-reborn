@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1110">
+<title>PHONE REBORN — Device Recovery Studio</title>
+<style>
+:root{--bg:#080d0c;--panel:#101917;--panel2:#15211d;--line:#263b33;--text:#f2faf5;--muted:#9bb1a5;--green:#71f0ad;--green2:#25bd78;--warn:#ffd37b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 75% -10%,#173b2b 0,transparent 42%),var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{width:min(1050px,100%);margin:auto;padding:20px 16px 48px}.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 24px}.brand{display:flex;gap:10px;align-items:center;font-weight:850;letter-spacing:.04em}.logo{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:var(--green);color:#062013;font-size:22px}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--muted)}
+.hero{padding:28px 0 22px}.eyebrow{color:var(--green);font-size:12px;letter-spacing:.18em;font-weight:800}.hero h1{font-size:clamp(36px,8vw,68px);line-height:1.02;letter-spacing:-.05em;margin:12px 0}.hero h1 span{color:var(--green)}.hero p{color:var(--muted);max-width:660px;font-size:17px}.layout{display:grid;grid-template-columns:1.05fr .95fr;gap:16px;margin-top:18px}.card{background:linear-gradient(160deg,rgba(21,33,29,.98),rgba(13,21,18,.98));border:1px solid var(--line);border-radius:20px;padding:20px;min-width:0}.card h2{font-size:20px;margin:0 0 6px}.sub{color:var(--muted);font-size:14px;margin:0 0 18px}.field{display:block;margin:14px 0 7px;font-size:13px;font-weight:750;color:#c9d9d0}input,select{width:100%;border:1px solid #31483d;border-radius:12px;background:#09110e;color:var(--text);padding:13px 12px;font:inherit;outline:none}input:focus,select:focus{border-color:var(--green)}.hint{font-size:12px;color:var(--muted);margin-top:7px}.btn{width:100%;border:0;border-radius:12px;background:var(--green);color:#062013;font-weight:850;font-size:15px;padding:14px 16px;margin-top:17px;cursor:pointer}.btn:hover{background:#a0ffca}.result{display:none;margin-top:16px;border:1px solid #345b46;border-radius:14px;background:#0a1710;padding:16px}.result.show{display:block}.result h3{margin:0 0 7px;color:var(--green)}.result p{margin:7px 0;color:#d5e5dc}.tag{display:inline-block;border:1px solid #345b46;color:var(--green);padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800;margin-bottom:8px}.steps{padding-left:20px;color:#d5e5dc}.steps li{padding:4px 0}.warning{border:1px solid #66542e;background:#211b0d;color:#ffe4a9;padding:12px;border-radius:12px;font-size:13px;margin-top:15px}.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.quick button{border:1px solid var(--line);background:#0c1511;color:var(--text);padding:13px;border-radius:12px;text-align:left;cursor:pointer}.quick button:hover{border-color:var(--green)}.quick strong{display:block;font-size:13px}.quick span{color:var(--muted);font-size:12px}.foot{color:var(--muted);font-size:12px;text-align:center;margin-top:25px}.smalllink{color:var(--green);text-decoration:none}.status{font-size:12px;color:var(--muted);margin-top:12px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.hero{padding-top:18px}.card{padding:17px}.nav{padding-bottom:12px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="nav">
+    <div class="brand"><div class="logo">↻</div><div>PHONE <span style="color:var(--green)">REBORN</span><div style="font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.16em">DEVICE RECOVERY STUDIO</div></div></div>
+    <div class="pill">BETA · PROTOTYPE</div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">DIAGNOSE. RECOVER. RESTART.</div>
+      <h1>Give your phone<br>a <span>fresh start.</span></h1>
+      <p>Identify your device, understand its lock issue, and find the safest official recovery path. Start with a diagnosis—no downloads or mystery tools.</p>
+    </section>
+    <section class="layout">
+      <div class="card">
+        <h2>Start a device check</h2>
+        <p class="sub">This demo works locally in your browser. It does not connect to a live IMEI registry.</p>
+        <form id="diagnostic">
+          <label class="field" for="brand">Phone brand</label>
+          <select id="brand" required>
+            <option value="">Choose brand</option><option>Samsung</option><option>Tecno</option><option>Infinix</option><option>Xiaomi / Redmi / POCO</option><option>Google Pixel</option><option>Huawei</option><option>OPPO</option><option>vivo</option><option>OnePlus</option><option>iPhone</option><option>Other / not sure</option>
+          </select>
+          <label class="field" for="model">Model (if known)</label>
+          <input id="model" maxlength="80" placeholder="e.g. Galaxy A15, iPhone 13">
+          <label class="field" for="issue">What is the problem?</label>
+          <select id="issue" required>
+            <option value="">Choose lock or issue</option>
+            <option value="screen">Forgot screen PIN / password / pattern</option>
+            <option value="frp">Google verification after reset (FRP)</option>
+            <option value="activation">iPhone Activation Lock / Apple Account</option>
+            <option value="sim">SIM or carrier network lock</option>
+            <option value="blacklist">IMEI reported lost / blocked network</option>
+            <option value="reset">Want to erase data and factory reset</option>
+            <option value="unknown">Not sure / another issue</option>
+          </select>
+          <label class="field" for="ownership">Device status</label>
+          <select id="ownership" required>
+            <option value="">Choose one</option><option value="owner">It's my phone</option><option value="permission">I have the owner's permission</option><option value="repair">I'm a repair professional with authorization</option>
+          </select>
+          <button class="btn" type="submit">RUN SAFE DIAGNOSIS →</button>
+          <div class="hint">Privacy tip: don't enter your IMEI here yet. This prototype doesn't need it to show recovery guidance.</div>
+        </form>
+        <div id="result" class="result" aria-live="polite"></div>
+      </div>
+      <aside>
+        <div class="card">
+          <h2>Choose a quick guide</h2>
+          <p class="sub">Jump to the most common recovery paths.</p>
+          <div class="quick">
+            <button type="button" data-issue="screen"><strong>🔐 Screen lock</strong><span>PIN or password</span></button>
+            <button type="button" data-issue="frp"><strong>🛡️ Google FRP</strong><span>After a reset</span></button>
+            <button type="button" data-issue="activation"><strong> Activation Lock</strong><span>Apple Account</span></button>
+            <button type="button" data-issue="sim"><strong>📶 SIM lock</strong><span>Carrier restrictions</span></button>
+            <button type="button" data-issue="reset"><strong>🧹 Factory reset</strong><span>Erase your data</span></button>
+            <button type="button" data-issue="blacklist"><strong>📡 IMEI status</strong><span>Blocked network</span></button>
+          </div>
+          <div class="warning"><strong>Important:</strong> A factory reset erases local data and may not remove Google FRP or Apple Activation Lock. An IMEI alone cannot unlock every phone.</div>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <h2>What this prototype can do</h2>
+          <ul class="steps">
+            <li>Interactive lock diagnosis</li>
+            <li>Clear recovery instructions</li>
+            <li>Works on Android and iPhone browsers</li>
+            <li>No fake “unlock successful” claims</li>
+          </ul>
+          <p class="status">Next upgrade: verified official links by brand/model, then an authorized IMEI lookup provider if available.</p>
+        </div>
+      </aside>
+    </section>
+  </main>
+  <footer class="foot">PHONE REBORN · Independent prototype, not affiliated with Apple, Google, Samsung, or any phone manufacturer.<br>Never submit passwords, account recovery codes, or proof-of-ownership documents to an unverified service.</footer>
+</div>
+<script>
+const guides = {
+ screen:{title:"Screen lock recovery",tag:"OWNER RECOVERY",body:"The correct method depends on the model and whether you can still access the account linked to the phone.",steps:["Try the device maker's official account/device recovery options first.","If you choose a factory reset, understand that local data may be permanently erased.","After reset, the phone may request the previously synced Google or Apple account.","If the data matters, stop before resetting and contact an authorized service centre."]},
+ frp:{title:"Google Factory Reset Protection (FRP)",tag:"ANTI-THEFT PROTECTION",body:"FRP is designed to stop someone from reusing an Android phone after an unauthorized reset.",steps:["Connect to Wi‑Fi and use a Google account previously synced to this device.","If you forgot the account, use Google's official account recovery process.","If you bought the phone second-hand, ask the previous owner to remove their account properly.","If you can prove ownership and remain blocked, contact the manufacturer or authorized repair service."]},
+ activation:{title:"Apple Activation Lock",tag:"APPLE ACCOUNT RECOVERY",body:"Activation Lock is linked to the owner's Apple Account and cannot be legitimately removed using only an IMEI.",steps:["Use the Apple Account previously associated with the iPhone.","Recover access through Apple's official account recovery process.","If you purchased it used, ask the previous owner to remove the device from their account.","If you have valid proof of purchase, contact Apple Support to ask about available options."]},
+ sim:{title:"SIM / carrier lock",tag:"NETWORK ELIGIBILITY",body:"A carrier lock is different from a screen lock. Unlock eligibility is decided by the carrier or network provider.",steps:["Check the phone's network-lock status in its settings if available.","Contact the original carrier and ask about eligibility, outstanding balances, and unlock policy.","Use a SIM from another network only after the carrier confirms the phone is unlocked.","Avoid services promising a guaranteed unlock without checking eligibility."]},
+ blacklist:{title:"IMEI / network block",tag:"STATUS CHECK NEEDED",body:"This demo cannot query a live blacklist or prove that an IMEI is clean.",steps:["Ask the mobile carrier to check the IMEI status through its authorized process.","If the device was blocked by mistake, contact the carrier that placed the block.","For a second-hand purchase, request proof of purchase and resolve concerns with the seller.","Do not attempt to alter an IMEI; use lawful carrier and manufacturer channels."]},
+ reset:{title:"Factory reset planning",tag:"DATA LOSS WARNING",body:"A reset can erase local files and still leave anti-theft account verification in place.",steps:["Back up photos, contacts, and files if you can still access the phone.","Confirm you know the Google or Apple Account previously used on the device.","Follow the manufacturer's official reset instructions for your exact model.","Keep the phone charged; do not interrupt a reset in progress."]},
+ unknown:{title:"Let's identify the issue",tag:"MORE DETAILS NEEDED",body:"Different locks require different solutions. First identify the exact message shown on the phone.",steps:["Write down the message shown on screen without sharing passwords or recovery codes.","Find the exact brand and model from the box, receipt, or device label if available.","Use the manufacturer or carrier's official support channel for the next step."]}
+};
+const form=document.getElementById('diagnostic'),result=document.getElementById('result');
+function showGuide(issue,brand,model){
+ const g=guides[issue]||guides.unknown;
+ result.className='result show';
+ result.innerHTML='<div class="tag">'+g.tag+'</div><h3>'+g.title+'</h3><p>'+g.body+'</p><p><strong>Device:</strong> '+escapeHtml(brand||'Not selected')+(model?' · '+escapeHtml(model):'')+'</p><ol class="steps">'+g.steps.map(s=>'<li>'+s+'</li>').join('')+'</ol><p class="hint">Diagnosis only — no device was unlocked, erased, or checked against a live database.</p>';
+ result.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+form.addEventListener('submit',e=>{e.preventDefault();const issue=document.getElementById('issue').value,owner=document.getElementById('ownership').value;if(!owner){return;}showGuide(issue,document.getElementById('brand').value,document.getElementById('model').value.trim());});
+document.querySelectorAll('[data-issue]').forEach(b=>b.addEventListener('click',()=>{document.getElementById('issue').value=b.dataset.issue;document.getElementById('brand').focus();document.getElementById('issue').scrollIntoView({behavior:'smooth',block:'center'});}));
+</script>
+</body>
+</html>
